@@ -6,7 +6,7 @@ Statamic.booting(() => {
     Statamic.$bard.buttons((allButtons, button) => {
         return button({
             name: 'safeentities',
-            text: 'Insert Entity',
+            text: 'Special Characters',
             component: 'safe-entities-button',
             html: '<span class="text-2xs font-mono leading-none">&amp;</span>',
         });
