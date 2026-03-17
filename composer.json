@@ -1,0 +1,49 @@
+{
+    "name": "jorisnoo/statamic-safe-entities",
+    "description": "A Statamic addon that provides a Blade directive and Bard buttons for safe HTML entity insertion (soft hyphens, non-breaking spaces, etc.).",
+    "type": "statamic-addon",
+    "license": "MIT",
+    "keywords": ["statamic-addon", "typography", "hyphenation", "entities"],
+    "authors": [
+        {
+            "name": "Joris Noordermeer",
+            "email": "contact@noordermeer.ch"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "statamic/cms": "^5.0 || ^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0 || ^10.0",
+        "phpunit/phpunit": "^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Noo\\SafeEntities\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Noo\\SafeEntities\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Safe Entities",
+            "description": "Blade directive and Bard buttons for safe HTML entity insertion."
+        },
+        "laravel": {
+            "providers": [
+                "Noo\\SafeEntities\\ServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "pixelfear/composer-dist-plugin": true
+        }
+    }
+}
