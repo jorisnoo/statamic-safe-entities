@@ -70,10 +70,14 @@ class ServiceProvider extends AddonServiceProvider
             $entityCode = is_int($code) ? $value : $code;
             $output = (is_array($value) && isset($value['output'])) ? $value['output'] : $entityCode;
 
+            $descKey = "statamic-safe-entities::messages.descriptions.{$entityCode}";
+            $description = __($descKey);
+
             $result[] = [
                 'code' => $entityCode,
                 'label' => $this->resolveLabel($code, $value),
                 'output' => $output,
+                'description' => $description !== $descKey ? $description : '',
             ];
         }
 

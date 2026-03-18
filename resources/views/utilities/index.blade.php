@@ -8,7 +8,7 @@
             <tr>
                 <th>{{ __('statamic-safe-entities::messages.column_code') }}</th>
                 <th>{{ __('statamic-safe-entities::messages.column_label') }}</th>
-                <th>{{ __('statamic-safe-entities::messages.column_preview') }}</th>
+                <th>{{ __('statamic-safe-entities::messages.column_description') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -16,7 +16,7 @@
                 <tr>
                     <td><code class="font-mono text-sm">{{ $entity['code'] }}</code></td>
                     <td class="text-sm">{{ $entity['label'] }}</td>
-                    <td class="text-sm">Wort{!! $entity['output'] !!}Wort</td>
+                    <td class="text-sm">{{ $entity['description'] }}</td>
                 </tr>
             @endforeach
         </tbody>
