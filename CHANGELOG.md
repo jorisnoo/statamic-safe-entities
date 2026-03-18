@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.1](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/v0.1.1) (2026-03-18)
+
+### Features
+
+- add localized descriptions for safe entities ([b06df62](https://github.com/jorisnoo/statamic-safe-entities/commit/b06df6204d61be323cb8fde89483a4aea853509e))
+
+### Build System
+
+- clean dist directory before building ([dbe5709](https://github.com/jorisnoo/statamic-safe-entities/commit/dbe57092e07e1b58555a0c997b67c24558edcdf3))
 ## [0.1.0](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/v0.1.0) (2026-03-18)
 
 ### Features
