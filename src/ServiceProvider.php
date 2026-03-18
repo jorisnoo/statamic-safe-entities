@@ -18,10 +18,10 @@ class ServiceProvider extends AddonServiceProvider
 
     public function bootAddon(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/safe-entities.php', 'statamic.safe-entities');
+        $this->mergeConfigFrom(__DIR__.'/../config/safe-entities.php', 'statamic.safe-entities');
 
         $this->publishes([
-            __DIR__ . '/../config/safe-entities.php' => config_path('statamic/safe-entities.php'),
+            __DIR__.'/../config/safe-entities.php' => config_path('statamic/safe-entities.php'),
         ], 'safe-entities-config');
 
         Statamic::provideToScript([
