@@ -13,4 +13,65 @@ return [
     'column_search' => 'Muster',
     'column_replace' => 'Ersetzt durch',
 
+    'entities' => [
+        // Trennzeichen & Striche
+        '&shy;' => 'Weiches Trennzeichen',
+        '&ndash;' => 'Halbgeviertstrich',
+        '&mdash;' => 'Geviertstrich',
+
+        // Leerzeichen
+        '&nbsp;' => 'Geschütztes Leerzeichen',
+        '&nnbsp;' => 'Schmales geschütztes Leerzeichen',
+        '&thinsp;' => 'Schmales Leerzeichen',
+        '&hairsp;' => 'Haardünnes Leerzeichen',
+        '&ensp;' => 'Halbgeviert-Leerzeichen',
+        '&emsp;' => 'Geviert-Leerzeichen',
+
+        // Nullbreite
+        '&zwj;' => 'Verbinder nullter Breite',
+        '&zwnj;' => 'Trenner nullter Breite',
+
+        // Satzzeichen
+        '&hellip;' => 'Auslassungszeichen',
+        '&bull;' => 'Aufzählungspunkt',
+        '&middot;' => 'Mittelpunkt',
+
+        // Anführungszeichen
+        '&laquo;' => 'Linke Guillemets',
+        '&raquo;' => 'Rechte Guillemets',
+        '&lsaquo;' => 'Linkes einfaches Guillemet',
+        '&rsaquo;' => 'Rechtes einfaches Guillemet',
+        '&ldquo;' => 'Linkes doppeltes Anführungszeichen',
+        '&rdquo;' => 'Rechtes doppeltes Anführungszeichen',
+        '&lsquo;' => 'Linkes einfaches Anführungszeichen',
+        '&rsquo;' => 'Rechtes einfaches Anführungszeichen',
+        '&sbquo;' => 'Einfaches Anführungszeichen unten',
+        '&bdquo;' => 'Doppeltes Anführungszeichen unten',
+
+        // Mathematik & Symbole
+        '&times;' => 'Malzeichen',
+        '&minus;' => 'Minuszeichen',
+        '&plusmn;' => 'Plus-Minus-Zeichen',
+        '&ne;' => 'Ungleichzeichen',
+        '&le;' => 'Kleiner oder gleich',
+        '&ge;' => 'Grösser oder gleich',
+        '&deg;' => 'Gradzeichen',
+        '&prime;' => 'Minutenzeichen',
+        '&Prime;' => 'Sekundenzeichen',
+
+        // Pfeile
+        '&larr;' => 'Pfeil nach links',
+        '&rarr;' => 'Pfeil nach rechts',
+
+        // Währung
+        '&euro;' => 'Eurozeichen',
+        '&pound;' => 'Pfundzeichen',
+        '&yen;' => 'Yen-Zeichen',
+
+        // Sonstiges
+        '&trade;' => 'Markenzeichen',
+        '&reg;' => 'Eingetragenes Warenzeichen',
+        '&copy;' => 'Urheberrecht',
+    ],
+
 ];

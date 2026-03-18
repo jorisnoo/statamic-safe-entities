@@ -88,10 +88,10 @@ class SafeEntities
     /**
      * Build a map of [inputCode => outputCode] from the entities config.
      *
-     * Supports three formats:
-     * - Indexed: ['&shy;', '&nbsp;'] → input and output are the same
-     * - Keyed with string label: ['&shy;' => 'Soft Hyphen'] → input and output are the same
-     * - Keyed with array value: ['&nnbsp;' => ['label' => '...', 'output' => '&#8239;']] → aliased output
+     * Supports these formats:
+     * - Indexed: ['&shy;', '&nbsp;']
+     * - Keyed with string label: ['&shy;' => 'Soft Hyphen'] (label ignored here)
+     * - Keyed with alias: ['&nnbsp;' => ['output' => '&#8239;']]
      *
      * @return array<string, string>
      */
@@ -99,16 +99,10 @@ class SafeEntities
     {
         $map = [];
 
-        if (array_is_list($entities)) {
-            foreach ($entities as $code) {
-                $map[$code] = $code;
-            }
-
-            return $map;
-        }
-
         foreach ($entities as $code => $value) {
-            if (is_array($value) && isset($value['output'])) {
+            if (is_int($code)) {
+                $map[$value] = $value;
+            } elseif (is_array($value) && isset($value['output'])) {
                 $map[$code] = $value['output'];
             } else {
                 $map[$code] = $code;

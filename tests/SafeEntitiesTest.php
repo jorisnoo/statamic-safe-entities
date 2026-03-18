@@ -127,6 +127,32 @@ class SafeEntitiesTest extends TestCase
         $this->assertEquals('', (string) $result);
     }
 
+    // --- Indexed format tests ---
+
+    #[Test]
+    public function render_supports_indexed_entity_list(): void
+    {
+        $entities = ['&shy;', '&nbsp;'];
+
+        $result = SafeEntities::render('Geschäfts&shy;bericht&nbsp;2024', $entities, []);
+
+        $this->assertEquals('Geschäfts&shy;bericht&nbsp;2024', (string) $result);
+    }
+
+    #[Test]
+    public function render_supports_mixed_indexed_and_aliased(): void
+    {
+        $entities = [
+            '&shy;',
+            '&nbsp;',
+            '&nnbsp;' => ['output' => '&#8239;'],
+        ];
+
+        $result = SafeEntities::render('Geschäfts&shy;bericht&nnbsp;2024', $entities, []);
+
+        $this->assertEquals('Geschäfts&shy;bericht&#8239;2024', (string) $result);
+    }
+
     // --- Alias tests ---
 
     #[Test]

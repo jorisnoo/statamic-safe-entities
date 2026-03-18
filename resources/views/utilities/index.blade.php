@@ -12,11 +12,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($entities as $code => $value)
+            @foreach ($entities as $entity)
                 <tr>
-                    <td><code class="font-mono text-sm">{{ $code }}</code></td>
-                    <td class="text-sm">{{ is_array($value) ? $value['label'] : (is_string($value) ? $value : $code) }}</td>
-                    <td class="text-sm">Wort{!! is_array($value) && isset($value['output']) ? $value['output'] : $code !!}Wort</td>
+                    <td><code class="font-mono text-sm">{{ $entity['code'] }}</code></td>
+                    <td class="text-sm">{{ $entity['label'] }}</td>
+                    <td class="text-sm">Wort{!! $entity['output'] !!}Wort</td>
                 </tr>
             @endforeach
         </tbody>

@@ -8,19 +8,18 @@ return [
     |--------------------------------------------------------------------------
     |
     | Special characters that editors can use in their content.
-    | Each entry maps a code to a description shown in the toolbar and
-    | the Special Characters utility page.
+    | Labels are provided via translation files (lang/{locale}/messages.php).
     |
-    | You can also alias an entity to a different output code:
+    | To alias an entity to a different output code:
     |
-    |   '&nnbsp;' => ['label' => 'Narrow No-Break Space', 'output' => '&#8239;'],
+    |   '&nnbsp;' => ['output' => '&#8239;'],
     |
     */
 
     'entities' => [
-        '&shy;' => 'Allows a word to break here if needed',
-        '&nbsp;' => 'Keeps two words on the same line',
-        '&ndash;' => 'En dash (longer than a hyphen)',
+        '&shy;',
+        '&nbsp;',
+        '&ndash;',
     ],
 
     /*
