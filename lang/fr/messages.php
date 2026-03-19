@@ -72,6 +72,11 @@ return [
         '&trade;' => 'Symbole marque déposée : ™',
         '&reg;' => 'Symbole marque enregistrée : ®',
         '&copy;' => 'Symbole droit d\'auteur : ©',
+
+        // Remplacements
+        '<br>' => 'Insère un saut de ligne dans le rendu',
+        '<no-hyphens>' => 'Désactive la césure automatique pour le texte encadré',
+        '</no-hyphens>' => 'Termine le bloc sans césure',
     ],
 
     'entities' => [
@@ -133,6 +138,11 @@ return [
         '&trade;' => 'Marque déposée',
         '&reg;' => 'Marque enregistrée',
         '&copy;' => 'Droit d\'auteur',
+
+        // Remplacements
+        '<br>' => 'Saut de ligne',
+        '<no-hyphens>' => 'Désactiver la césure',
+        '</no-hyphens>' => 'Fin de désactivation de la césure',
     ],
 
 ];

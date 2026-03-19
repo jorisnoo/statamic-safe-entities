@@ -38,8 +38,10 @@ class ServiceProvider extends AddonServiceProvider
             ->icon('text-formatting-ampersand')
             ->view('statamic-safe-entities::utilities.index', function () {
                 return [
-                    'entities' => $this->resolvedEntitiesForView(),
-                    'replacements' => config('statamic.safe-entities.replacements', []),
+                    'entities' => array_merge(
+                        $this->resolvedEntitiesForView(),
+                        $this->resolvedReplacementsForView(),
+                    ),
                 ];
             });
     }
@@ -76,6 +78,45 @@ class ServiceProvider extends AddonServiceProvider
             $result[] = [
                 'code' => $entityCode,
                 'label' => $this->resolveLabel($code, $value),
+                'output' => $output,
+                'description' => $description !== $descKey ? $description : '',
+            ];
+        }
+
+        return $result;
+    }
+
+    /**
+     * Build resolved replacement data for the utility view,
+     * converting replacement patterns into the same row format as entities.
+     */
+    private function resolvedReplacementsForView(): array
+    {
+        $result = [];
+        $seen = [];
+        $entityCodes = collect(config('statamic.safe-entities.entities', []))
+            ->map(fn ($value, $code) => is_int($code) ? $value : $code)
+            ->values()
+            ->all();
+
+        foreach (config('statamic.safe-entities.replacements', []) as $pattern => $output) {
+            $decoded = html_entity_decode($pattern, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
+            if (in_array($decoded, $entityCodes) || isset($seen[$decoded])) {
+                continue;
+            }
+
+            $seen[$decoded] = true;
+
+            $labelKey = "statamic-safe-entities::messages.entities.{$decoded}";
+            $label = __($labelKey);
+
+            $descKey = "statamic-safe-entities::messages.descriptions.{$decoded}";
+            $description = __($descKey);
+
+            $result[] = [
+                'code' => $decoded,
+                'label' => $label !== $labelKey ? $label : $decoded,
                 'output' => $output,
                 'description' => $description !== $descKey ? $description : '',
             ];

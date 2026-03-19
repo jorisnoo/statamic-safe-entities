@@ -72,6 +72,11 @@ return [
         '&trade;' => 'Trademark symbol: ™',
         '&reg;' => 'Registered trademark: ®',
         '&copy;' => 'Copyright symbol: ©',
+
+        // Replacements
+        '<br>' => 'Inserts a line break in the rendered output',
+        '<no-hyphens>' => 'Disables automatic hyphenation for the enclosed text',
+        '</no-hyphens>' => 'Ends the no-hyphens block',
     ],
 
     'entities' => [
@@ -133,6 +138,11 @@ return [
         '&trade;' => 'Trademark',
         '&reg;' => 'Registered',
         '&copy;' => 'Copyright',
+
+        // Replacements
+        '<br>' => 'Line Break',
+        '<no-hyphens>' => 'Disable Hyphens',
+        '</no-hyphens>' => 'End Disable Hyphens',
     ],
 
 ];

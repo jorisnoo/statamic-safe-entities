@@ -72,6 +72,11 @@ return [
         '&trade;' => 'Markenzeichen: ™',
         '&reg;' => 'Eingetragenes Warenzeichen: ®',
         '&copy;' => 'Urheberrechtszeichen: ©',
+
+        // Ersetzungen
+        '<br>' => 'Fügt einen Zeilenumbruch in der Ausgabe ein',
+        '<no-hyphens>' => 'Deaktiviert die automatische Silbentrennung für den eingeschlossenen Text',
+        '</no-hyphens>' => 'Beendet den Bereich ohne Silbentrennung',
     ],
 
     'entities' => [
@@ -133,6 +138,11 @@ return [
         '&trade;' => 'Markenzeichen',
         '&reg;' => 'Eingetragenes Warenzeichen',
         '&copy;' => 'Urheberrecht',
+
+        // Ersetzungen
+        '<br>' => 'Zeilenumbruch',
+        '<no-hyphens>' => 'Silbentrennung deaktivieren',
+        '</no-hyphens>' => 'Silbentrennung Ende',
     ],
 
 ];
