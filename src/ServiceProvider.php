@@ -2,16 +2,16 @@
 
 namespace Noo\SafeEntities;
 
+use Illuminate\Console\Events\CommandStarting;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\File;
+use Statamic\Facades\Site;
 use Statamic\Facades\Utility;
 use Statamic\Providers\AddonServiceProvider;
 use Statamic\Statamic;
 
 class ServiceProvider extends AddonServiceProvider
 {
-    protected $publishAfterInstall = false;
-
     protected $vite = [
         'input' => [
             'resources/js/safe-entities.js',
@@ -21,17 +21,20 @@ class ServiceProvider extends AddonServiceProvider
 
     public function bootAddon(): void
     {
-        Statamic::afterInstalled(function ($command) {
+        $this->app['events']->listen(CommandStarting::class, function (CommandStarting $event) {
+            if ($event->command !== 'vendor:publish') {
+                return;
+            }
+
+            if ($event->input->getOption('tag') !== $this->getAddon()->slug()) {
+                return;
+            }
+
             $buildPath = public_path('vendor/'.$this->getAddon()->packageName().'/build');
 
             if (File::isDirectory($buildPath)) {
                 File::cleanDirectory($buildPath);
             }
-
-            $command->call('vendor:publish', [
-                '--tag' => $this->getAddon()->slug(),
-                '--force' => true,
-            ]);
         });
 
         $this->mergeConfigFrom(__DIR__.'/../config/safe-entities.php', 'statamic.safe-entities');
@@ -43,6 +46,7 @@ class ServiceProvider extends AddonServiceProvider
         Statamic::provideToScript([
             'safeEntities' => $this->resolvedEntities(),
             'safeEntitiesHyphenation' => config('statamic.safe-entities.hyphenation.languages', []),
+            'safeEntitiesLocale' => Site::selected()->locale(),
         ]);
 
         Blade::directive('entities', fn (string $expression) => "<?php echo \Noo\SafeEntities\SafeEntities::render($expression); ?>");

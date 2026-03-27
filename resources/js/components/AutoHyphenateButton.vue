@@ -1,32 +1,22 @@
 <template>
-    <Dropdown align="center">
-        <template #trigger>
-            <Button
-                class="px-2!"
-                variant="ghost"
-                size="sm"
-                :aria-label="button.text"
-                v-tooltip="button.text"
-                :disabled="loading"
-            >
-                <div class="flex items-center" v-html="button.html" />
-            </Button>
-        </template>
-        <DropdownItem
-            v-for="(label, code) in languages"
-            :key="code"
-            @click="hyphenate(code)"
-        >
-            <span class="text-xs">{{ label }}</span>
-        </DropdownItem>
-    </Dropdown>
+    <Button
+        class="px-2!"
+        variant="ghost"
+        size="sm"
+        :aria-label="button.text"
+        v-tooltip="tooltip"
+        :disabled="loading"
+        @click="hyphenate"
+    >
+        <div class="flex items-center" v-html="button.html" />
+    </Button>
 </template>
 
 <script>
-import { Button, Dropdown, DropdownItem } from '@statamic/cms/ui';
+import { Button } from '@statamic/cms/ui';
 
 export default {
-    components: { Button, Dropdown, DropdownItem },
+    components: { Button },
 
     props: {
         button: Object,
@@ -42,14 +32,32 @@ export default {
             return Statamic.$config.get('safeEntitiesHyphenation') || {};
         },
 
+        language() {
+            const locale = (Statamic.$config.get('safeEntitiesLocale') || '').toLowerCase().replace('_', '-');
+            const codes = Object.keys(this.languages);
+
+            return codes.find(code => code === locale)
+                || codes.find(code => locale.startsWith(code))
+                || codes.find(code => code.startsWith(locale))
+                || codes[0]
+                || null;
+        },
+
+        tooltip() {
+            const label = this.language ? this.languages[this.language] : null;
+            return label ? `${this.button.text} (${label})` : this.button.text;
+        },
+
         loading() {
             return this.editor?.storage?.autoHyphenate?.loading || false;
         },
     },
 
     methods: {
-        hyphenate(language) {
-            this.editor.commands.autoHyphenate({ language });
+        hyphenate() {
+            if (this.language) {
+                this.editor.commands.autoHyphenate({ language: this.language });
+            }
         },
     },
 };

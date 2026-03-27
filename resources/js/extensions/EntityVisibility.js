@@ -7,8 +7,8 @@ function injectStyles() {
     const style = document.createElement('style');
     style.textContent = `
         .entity-marker {
-            background-color: #fbbf24;
-            color: #92400e;
+            background-color: #e5e7eb;
+            color: #374151;
             border-radius: 2px;
             padding: 0 1px;
             font-size: 0.7em;

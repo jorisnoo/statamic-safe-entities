@@ -18,28 +18,30 @@ async function getHyphenator(language) {
     return cache[language];
 }
 
-function hyphenateDocument(editor, hyphenate, from, to) {
+async function hyphenateDocument(editor, hyphenate, from, to) {
     const { state } = editor;
     const { doc } = state;
     const { tr } = state;
     let offset = 0;
 
+    const nodes = [];
     doc.nodesBetween(from, to, (node, pos) => {
-        if (!node.isText) return;
+        if (node.isText) nodes.push({ text: node.text, pos });
+    });
 
-        const text = node.text;
+    for (const { text, pos } of nodes) {
         const clean = text.replaceAll('&shy;', '');
-        const hyphenated = hyphenate(clean);
+        const hyphenated = await hyphenate(clean);
         const withEntities = hyphenated.replaceAll('\u00AD', '&shy;');
 
-        if (withEntities === text) return;
+        if (withEntities === text) continue;
 
         const adjustedFrom = pos + offset;
         const adjustedTo = pos + text.length + offset;
 
         tr.insertText(withEntities, adjustedFrom, adjustedTo);
         offset += withEntities.length - text.length;
-    });
+    }
 
     if (tr.docChanged) {
         editor.view.dispatch(tr);
