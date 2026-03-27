@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.0](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/v0.2.0) (2026-03-27)
+
+### Features
+
+- add auto-hyphenate and entity-visibility extensions with dependabot automation ([e7b19d8](https://github.com/jorisnoo/statamic-safe-entities/commit/e7b19d8d7f2fde4c661bb8c8175365301e2fddda))
+- merge replacements into unified entities table on CP utility page ([d923dd2](https://github.com/jorisnoo/statamic-safe-entities/commit/d923dd2f75673c6549e26257b0c48f020a9c54f1))
+
+### Build System
+
+- rebuild assets with updated extensions and components ([0aa0e3d](https://github.com/jorisnoo/statamic-safe-entities/commit/0aa0e3d002ef3ca633d38d187d1a74d2f22ae527))
 ## [0.1.1](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/v0.1.1) (2026-03-18)
 
 ### Features
