@@ -45,4 +45,23 @@ return [
         //
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Auto-Hyphenation Languages
+    |--------------------------------------------------------------------------
+    |
+    | Languages available in the auto-hyphenation dropdown. Each key is a
+    | language code supported by the `hyphen` npm package, and each value
+    | is the label shown to editors.
+    |
+    */
+
+    'hyphenation' => [
+        'languages' => [
+            'de' => 'Deutsch',
+            'fr' => 'Français',
+            'en-us' => 'English',
+        ],
+    ],
+
 ];

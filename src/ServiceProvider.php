@@ -3,12 +3,15 @@
 namespace Noo\SafeEntities;
 
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\File;
 use Statamic\Facades\Utility;
 use Statamic\Providers\AddonServiceProvider;
 use Statamic\Statamic;
 
 class ServiceProvider extends AddonServiceProvider
 {
+    protected $publishAfterInstall = false;
+
     protected $vite = [
         'input' => [
             'resources/js/safe-entities.js',
@@ -18,6 +21,19 @@ class ServiceProvider extends AddonServiceProvider
 
     public function bootAddon(): void
     {
+        Statamic::afterInstalled(function ($command) {
+            $buildPath = public_path('vendor/'.$this->getAddon()->packageName().'/build');
+
+            if (File::isDirectory($buildPath)) {
+                File::cleanDirectory($buildPath);
+            }
+
+            $command->call('vendor:publish', [
+                '--tag' => $this->getAddon()->slug(),
+                '--force' => true,
+            ]);
+        });
+
         $this->mergeConfigFrom(__DIR__.'/../config/safe-entities.php', 'statamic.safe-entities');
 
         $this->publishes([
@@ -26,6 +42,7 @@ class ServiceProvider extends AddonServiceProvider
 
         Statamic::provideToScript([
             'safeEntities' => $this->resolvedEntities(),
+            'safeEntitiesHyphenation' => config('statamic.safe-entities.hyphenation.languages', []),
         ]);
 
         Blade::directive('entities', fn (string $expression) => "<?php echo \Noo\SafeEntities\SafeEntities::render($expression); ?>");
@@ -38,10 +55,8 @@ class ServiceProvider extends AddonServiceProvider
             ->icon('text-formatting-ampersand')
             ->view('statamic-safe-entities::utilities.index', function () {
                 return [
-                    'entities' => array_merge(
-                        $this->resolvedEntitiesForView(),
-                        $this->resolvedReplacementsForView(),
-                    ),
+                    'entities' => $this->resolvedEntitiesForView(),
+                    'replacements' => config('statamic.safe-entities.replacements', []),
                 ];
             });
     }
@@ -78,45 +93,6 @@ class ServiceProvider extends AddonServiceProvider
             $result[] = [
                 'code' => $entityCode,
                 'label' => $this->resolveLabel($code, $value),
-                'output' => $output,
-                'description' => $description !== $descKey ? $description : '',
-            ];
-        }
-
-        return $result;
-    }
-
-    /**
-     * Build resolved replacement data for the utility view,
-     * converting replacement patterns into the same row format as entities.
-     */
-    private function resolvedReplacementsForView(): array
-    {
-        $result = [];
-        $seen = [];
-        $entityCodes = collect(config('statamic.safe-entities.entities', []))
-            ->map(fn ($value, $code) => is_int($code) ? $value : $code)
-            ->values()
-            ->all();
-
-        foreach (config('statamic.safe-entities.replacements', []) as $pattern => $output) {
-            $decoded = html_entity_decode($pattern, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-
-            if (in_array($decoded, $entityCodes) || isset($seen[$decoded])) {
-                continue;
-            }
-
-            $seen[$decoded] = true;
-
-            $labelKey = "statamic-safe-entities::messages.entities.{$decoded}";
-            $label = __($labelKey);
-
-            $descKey = "statamic-safe-entities::messages.descriptions.{$decoded}";
-            $description = __($descKey);
-
-            $result[] = [
-                'code' => $decoded,
-                'label' => $label !== $labelKey ? $label : $decoded,
                 'output' => $output,
                 'description' => $description !== $descKey ? $description : '',
             ];

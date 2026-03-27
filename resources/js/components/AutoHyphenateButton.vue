@@ -7,17 +7,17 @@
                 size="sm"
                 :aria-label="button.text"
                 v-tooltip="button.text"
+                :disabled="loading"
             >
                 <div class="flex items-center" v-html="button.html" />
             </Button>
         </template>
         <DropdownItem
-            v-for="(label, code) in entities"
+            v-for="(label, code) in languages"
             :key="code"
-            @click="insert(code)"
+            @click="hyphenate(code)"
         >
-            <span class="font-mono text-xs">{{ code }}</span>
-            <span class="text-gray-500 text-2xs ml-1">{{ label }}</span>
+            <span class="text-xs">{{ label }}</span>
         </DropdownItem>
     </Dropdown>
 </template>
@@ -38,14 +38,18 @@ export default {
     },
 
     computed: {
-        entities() {
-            return Statamic.$config.get('safeEntities') || {};
+        languages() {
+            return Statamic.$config.get('safeEntitiesHyphenation') || {};
+        },
+
+        loading() {
+            return this.editor?.storage?.autoHyphenate?.loading || false;
         },
     },
 
     methods: {
-        insert(code) {
-            this.editor.chain().focus().insertContent(code).showEntities().run();
+        hyphenate(language) {
+            this.editor.commands.autoHyphenate({ language });
         },
     },
 };
