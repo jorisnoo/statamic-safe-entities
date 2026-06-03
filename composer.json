@@ -3,11 +3,18 @@
     "description": "A Statamic addon that provides a Blade directive and Bard buttons for safe HTML entity insertion (soft hyphens, non-breaking spaces, etc.).",
     "type": "statamic-addon",
     "license": "MIT",
-    "keywords": ["statamic-addon", "typography", "hyphenation", "entities"],
+    "keywords": [
+        "statamic",
+        "statamic-addon",
+        "typography",
+        "hyphenation",
+        "entities"
+    ],
     "authors": [
         {
             "name": "Joris Noordermeer",
-            "email": "contact@noordermeer.ch"
+            "email": "contact@noordermeer.ch",
+            "homepage": "https://github.com/jorisnoo"
         }
     ],
     "require": {
