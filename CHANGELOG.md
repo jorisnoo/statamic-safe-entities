@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.1](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/v0.2.1) (2026-07-10)
+
+### Bug Fixes
+
+- remove unsafe whole-page replacement middleware ([c7f38dd](https://github.com/jorisnoo/statamic-safe-entities/commit/c7f38dd286964f3aa1902af035c09f985f1bd3ea))
+
+### Build System
+
+- drop Laravel 11 support ([57f680d](https://github.com/jorisnoo/statamic-safe-entities/commit/57f680da812fb0fc4ab853fe47b29e3ea93bfa63))
+- add justfile and simplify ci workflows ([8ea2af0](https://github.com/jorisnoo/statamic-safe-entities/commit/8ea2af0b4d182dabeea702b413c503cb139fa6bd))
+
+### Chores
+
+- **deps:** minor update ([de4c3fa](https://github.com/jorisnoo/statamic-safe-entities/commit/de4c3fa65f3d7ad53ec17dd141a5dda6b22b595a))
+- stop tracking package-lock.json ([7d86e35](https://github.com/jorisnoo/statamic-safe-entities/commit/7d86e35cc058c97d665519a20e661f54ca003cb7))
 ## [0.2.0](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/v0.2.0) (2026-03-27)
 
 ### Features
