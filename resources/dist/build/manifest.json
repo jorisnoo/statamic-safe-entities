@@ -36,7 +36,7 @@
     ]
   },
   "resources/js/components/AutoHyphenateButton.vue": {
-    "file": "assets/AutoHyphenateButton-uIH13sQN.js",
+    "file": "assets/AutoHyphenateButton-xUM8k3GW.js",
     "name": "AutoHyphenateButton",
     "src": "resources/js/components/AutoHyphenateButton.vue",
     "isDynamicEntry": true,
@@ -45,7 +45,7 @@
     ]
   },
   "resources/js/extensions/AutoHyphenate.js": {
-    "file": "assets/AutoHyphenate-DROyeIoI.js",
+    "file": "assets/AutoHyphenate-Bl1QGVq7.js",
     "name": "AutoHyphenate",
     "src": "resources/js/extensions/AutoHyphenate.js",
     "isDynamicEntry": true,
@@ -60,7 +60,7 @@
     ]
   },
   "resources/js/safe-entities.js": {
-    "file": "assets/safe-entities-BqQzoPDS.js",
+    "file": "assets/safe-entities-CKq75JWQ.js",
     "name": "safe-entities",
     "src": "resources/js/safe-entities.js",
     "isEntry": true,

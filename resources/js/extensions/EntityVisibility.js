@@ -23,6 +23,13 @@ function injectStyles() {
     document.head.appendChild(style);
 }
 
+const decoder = document.createElement('textarea');
+
+function decodeEntity(entity) {
+    decoder.innerHTML = entity;
+    return decoder.value;
+}
+
 export function createEntityVisibilityExtension(tiptap) {
     const { Extension } = tiptap.core;
     const { Plugin, PluginKey } = tiptap.pm.state;
@@ -64,6 +71,15 @@ export function createEntityVisibilityExtension(tiptap) {
             const entities = Object.keys(Statamic.$config.get('safeEntities') || {});
             const storage = this.storage;
 
+            function renderEntity(entity) {
+                return () => {
+                    const span = document.createElement('span');
+                    span.className = 'entity-rendered';
+                    span.textContent = decodeEntity(entity);
+                    return span;
+                };
+            }
+
             function buildDecorations(doc, entities, visible) {
                 const cssClass = visible ? 'entity-marker' : 'entity-hidden';
                 const decorations = [];
@@ -76,12 +92,21 @@ export function createEntityVisibilityExtension(tiptap) {
                     for (const entity of entities) {
                         let index = 0;
                         while ((index = text.indexOf(entity, index)) !== -1) {
+                            const from = pos + index;
+                            const to = from + entity.length;
+
                             decorations.push(
-                                Decoration.inline(pos + index, pos + index + entity.length, {
+                                Decoration.inline(from, to, {
                                     class: cssClass,
                                     'data-entity': entity,
                                 }),
                             );
+
+                            // In rendered mode the code is hidden, so show the decoded character in its place.
+                            if (!visible) {
+                                decorations.push(Decoration.widget(from, renderEntity(entity), { key: entity }));
+                            }
+
                             index += entity.length;
                         }
                     }
