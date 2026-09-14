@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.2](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/v0.2.2) (2026-09-14)
+
+### ⚠ BREAKING CHANGES
+
+- remove auto-hyphenation feature and dependencies ([894e954](https://github.com/jorisnoo/statamic-safe-entities/commit/894e954017a0fae11fc40f6337d263c067b3d69d))
+
+### Features
+
+- remove auto-hyphenation feature and dependencies ([894e954](https://github.com/jorisnoo/statamic-safe-entities/commit/894e954017a0fae11fc40f6337d263c067b3d69d))
+
+### Build System
+
+- regenerate build assets ([6609ac2](https://github.com/jorisnoo/statamic-safe-entities/commit/6609ac2c70c71777de29fc62a0223b2c94e63d7e))
 ## [0.2.1](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/v0.2.1) (2026-07-10)
 
 ### Bug Fixes
