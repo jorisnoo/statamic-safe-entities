@@ -5,7 +5,6 @@ namespace Noo\SafeEntities;
 use Illuminate\Console\Events\CommandStarting;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\File;
-use Statamic\Facades\Site;
 use Statamic\Facades\Utility;
 use Statamic\Providers\AddonServiceProvider;
 use Statamic\Statamic;
@@ -45,8 +44,6 @@ class ServiceProvider extends AddonServiceProvider
 
         Statamic::provideToScript([
             'safeEntities' => $this->resolvedEntities(),
-            'safeEntitiesHyphenation' => config('statamic.safe-entities.hyphenation.languages', []),
-            'safeEntitiesLocale' => Site::selected()->locale(),
         ]);
 
         Blade::directive('entities', fn (string $expression) => "<?php echo \Noo\SafeEntities\SafeEntities::render($expression); ?>");

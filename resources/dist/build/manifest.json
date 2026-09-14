@@ -1,72 +1,8 @@
 {
-  "_export-contract-BcuNew4U.js": {
-    "file": "assets/export-contract-BcuNew4U.js",
-    "name": "export-contract"
-  },
-  "_index-BcKWAVjH.js": {
-    "file": "assets/index-BcKWAVjH.js",
-    "name": "index",
-    "isDynamicEntry": true,
-    "imports": [
-      "_export-contract-BcuNew4U.js"
-    ]
-  },
-  "_index-CnAAFp0U.js": {
-    "file": "assets/index-CnAAFp0U.js",
-    "name": "index",
-    "isDynamicEntry": true,
-    "imports": [
-      "_export-contract-BcuNew4U.js"
-    ]
-  },
-  "_index-MwbyzAAr.js": {
-    "file": "assets/index-MwbyzAAr.js",
-    "name": "index",
-    "isDynamicEntry": true,
-    "imports": [
-      "_export-contract-BcuNew4U.js"
-    ]
-  },
-  "_index-dDVmRFRm.js": {
-    "file": "assets/index-dDVmRFRm.js",
-    "name": "index",
-    "isDynamicEntry": true,
-    "imports": [
-      "_export-contract-BcuNew4U.js"
-    ]
-  },
-  "resources/js/components/AutoHyphenateButton.vue": {
-    "file": "assets/AutoHyphenateButton-xUM8k3GW.js",
-    "name": "AutoHyphenateButton",
-    "src": "resources/js/components/AutoHyphenateButton.vue",
-    "isDynamicEntry": true,
-    "imports": [
-      "resources/js/safe-entities.js"
-    ]
-  },
-  "resources/js/extensions/AutoHyphenate.js": {
-    "file": "assets/AutoHyphenate-Bl1QGVq7.js",
-    "name": "AutoHyphenate",
-    "src": "resources/js/extensions/AutoHyphenate.js",
-    "isDynamicEntry": true,
-    "imports": [
-      "resources/js/safe-entities.js"
-    ],
-    "dynamicImports": [
-      "_index-BcKWAVjH.js",
-      "_index-MwbyzAAr.js",
-      "_index-CnAAFp0U.js",
-      "_index-dDVmRFRm.js"
-    ]
-  },
   "resources/js/safe-entities.js": {
-    "file": "assets/safe-entities-CKq75JWQ.js",
+    "file": "assets/safe-entities-B8Qlr_T7.js",
     "name": "safe-entities",
     "src": "resources/js/safe-entities.js",
-    "isEntry": true,
-    "dynamicImports": [
-      "resources/js/components/AutoHyphenateButton.vue",
-      "resources/js/extensions/AutoHyphenate.js"
-    ]
+    "isEntry": true
   }
 }
