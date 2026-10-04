@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.2.2](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/v0.2.2) (2026-09-14)
+## [0.2.2](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/0.2.2) (2026-09-14)
 
 ### ⚠ BREAKING CHANGES
 
@@ -15,7 +15,7 @@ All notable changes to this project will be documented in this file.
 ### Build System
 
 - regenerate build assets ([6609ac2](https://github.com/jorisnoo/statamic-safe-entities/commit/6609ac2c70c71777de29fc62a0223b2c94e63d7e))
-## [0.2.1](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/v0.2.1) (2026-07-10)
+## [0.2.1](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/0.2.1) (2026-07-10)
 
 ### Bug Fixes
 
@@ -30,7 +30,7 @@ All notable changes to this project will be documented in this file.
 
 - **deps:** minor update ([de4c3fa](https://github.com/jorisnoo/statamic-safe-entities/commit/de4c3fa65f3d7ad53ec17dd141a5dda6b22b595a))
 - stop tracking package-lock.json ([7d86e35](https://github.com/jorisnoo/statamic-safe-entities/commit/7d86e35cc058c97d665519a20e661f54ca003cb7))
-## [0.2.0](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/v0.2.0) (2026-03-27)
+## [0.2.0](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/0.2.0) (2026-03-27)
 
 ### Features
 
@@ -40,7 +40,7 @@ All notable changes to this project will be documented in this file.
 ### Build System
 
 - rebuild assets with updated extensions and components ([0aa0e3d](https://github.com/jorisnoo/statamic-safe-entities/commit/0aa0e3d002ef3ca633d38d187d1a74d2f22ae527))
-## [0.1.1](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/v0.1.1) (2026-03-18)
+## [0.1.1](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/0.1.1) (2026-03-18)
 
 ### Features
 
@@ -49,7 +49,7 @@ All notable changes to this project will be documented in this file.
 ### Build System
 
 - clean dist directory before building ([dbe5709](https://github.com/jorisnoo/statamic-safe-entities/commit/dbe57092e07e1b58555a0c997b67c24558edcdf3))
-## [0.1.0](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/v0.1.0) (2026-03-18)
+## [0.1.0](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/0.1.0) (2026-03-18)
 
 ### Features
 
