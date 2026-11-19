@@ -2,7 +2,7 @@
 
 namespace Noo\SafeEntities;
 
-use Illuminate\Console\Events\CommandStarting;
+use Illuminate\Foundation\Events\VendorTagPublished;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\File;
 use Statamic\Facades\Utility;
@@ -20,19 +20,20 @@ class ServiceProvider extends AddonServiceProvider
 
     public function bootAddon(): void
     {
-        $this->app['events']->listen(CommandStarting::class, function (CommandStarting $event) {
-            if ($event->command !== 'vendor:publish') {
+        $this->app['events']->listen(VendorTagPublished::class, function (VendorTagPublished $event) {
+            $source = $this->getAddon()->directory().'resources/dist/build/';
+            $target = $event->paths[$source] ?? null;
+
+            // Without --force Laravel may keep the old manifest. Never prune its chunks.
+            if (! $target || ! File::isFile($target.'manifest.json')
+                || ! File::hasSameHash($source.'manifest.json', $target.'manifest.json')) {
                 return;
             }
 
-            if ($event->input->getOption('tag') !== $this->getAddon()->slug()) {
-                return;
-            }
-
-            $buildPath = public_path('vendor/'.$this->getAddon()->packageName().'/build');
-
-            if (File::isDirectory($buildPath)) {
-                File::cleanDirectory($buildPath);
+            foreach (File::allFiles($target) as $file) {
+                if (! File::isFile($source.$file->getRelativePathname())) {
+                    File::delete($file->getPathname());
+                }
             }
         });
 
@@ -43,84 +44,47 @@ class ServiceProvider extends AddonServiceProvider
         ], 'safe-entities-config');
 
         Statamic::provideToScript([
-            'safeEntities' => $this->resolvedEntities(),
+            'safeEntities' => fn () => $this->resolvedEntities(),
+            'safeEntityButtons' => fn () => [
+                'insert' => __('statamic-safe-entities::messages.utility_title'),
+                'toggle' => __('statamic-safe-entities::messages.toggle_visibility'),
+            ],
         ]);
 
         Blade::directive('entities', fn (string $expression) => "<?php echo \Noo\SafeEntities\SafeEntities::render($expression); ?>");
         Blade::directive('entitiesHtml', fn (string $expression) => "<?php echo \Noo\SafeEntities\SafeEntities::renderHtml($expression); ?>");
 
-        Utility::register('safe_entities')
-            ->title(__('statamic-safe-entities::messages.utility_title'))
-            ->navTitle(__('statamic-safe-entities::messages.utility_title'))
-            ->description(__('statamic-safe-entities::messages.utility_description'))
-            ->icon('text-formatting-ampersand')
-            ->view('statamic-safe-entities::utilities.index', function () {
-                return [
-                    'entities' => $this->resolvedEntitiesForView(),
+        Utility::extend(function ($utilities) {
+            $utilities->register('safe_entities')
+                ->title(__('statamic-safe-entities::messages.utility_title'))
+                ->description(__('statamic-safe-entities::messages.utility_description'))
+                ->icon('text-formatting-ampersand')
+                ->view('statamic-safe-entities::utilities.index', fn () => [
+                    'entities' => $this->resolvedEntities(),
                     'replacements' => config('statamic.safe-entities.replacements', []),
-                ];
-            });
+                ]);
+        });
     }
 
-    /**
-     * Build [code => label] for the Bard toolbar JS.
-     */
+    /** @return array<string, array{label: string, output: string}> */
     private function resolvedEntities(): array
     {
         $result = [];
 
         foreach (config('statamic.safe-entities.entities', []) as $code => $value) {
             $entityCode = is_int($code) ? $value : $code;
-            $result[$entityCode] = $this->resolveLabel($code, $value);
-        }
+            if ($entityCode === '') {
+                continue;
+            }
 
-        return $result;
-    }
-
-    /**
-     * Build resolved entity data for the utility view.
-     */
-    private function resolvedEntitiesForView(): array
-    {
-        $result = [];
-
-        foreach (config('statamic.safe-entities.entities', []) as $code => $value) {
-            $entityCode = is_int($code) ? $value : $code;
-            $output = (is_array($value) && isset($value['output'])) ? $value['output'] : $entityCode;
-
-            $descKey = "statamic-safe-entities::messages.descriptions.{$entityCode}";
-            $description = __($descKey);
-
-            $result[] = [
-                'code' => $entityCode,
-                'label' => $this->resolveLabel($code, $value),
-                'output' => $output,
-                'description' => $description !== $descKey ? $description : '',
+            $label = is_array($value) ? ($value['label'] ?? null) : (is_int($code) ? null : $value);
+            $key = "statamic-safe-entities::messages.entities.{$entityCode}";
+            $result[$entityCode] = [
+                'label' => $label ?? (trans()->has($key) ? __($key) : $entityCode),
+                'output' => is_array($value) ? ($value['output'] ?? $entityCode) : $entityCode,
             ];
         }
 
         return $result;
-    }
-
-    /**
-     * Resolve a label for an entity code, checking translations first,
-     * then falling back to config values.
-     */
-    private function resolveLabel(int|string $code, mixed $value): string
-    {
-        $entityCode = is_int($code) ? $value : $code;
-
-        $transKey = "statamic-safe-entities::messages.entities.{$entityCode}";
-        $label = __($transKey);
-
-        if ($label !== $transKey) {
-            return $label;
-        }
-
-        return match (true) {
-            is_array($value) && isset($value['label']) => $value['label'],
-            is_string($value) && ! is_int($code) => $value,
-            default => $entityCode,
-        };
     }
 }

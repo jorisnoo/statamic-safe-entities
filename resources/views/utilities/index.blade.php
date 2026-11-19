@@ -12,13 +12,34 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($entities as $entity)
+            @foreach ($entities as $code => $entity)
                 <tr>
-                    <td><code class="font-mono text-sm">{{ $entity['code'] }}</code></td>
+                    <td><code class="font-mono text-sm">{{ $code }}</code></td>
                     <td class="text-sm">{{ $entity['label'] }}</td>
-                    <td class="text-sm">{{ $entity['description'] }}</td>
+                    <td class="text-sm">{{ trans()->has($key = "statamic-safe-entities::messages.descriptions.{$code}") ? __($key) : '' }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+
+    @if ($replacements)
+        <h2 class="mt-4">{{ __('statamic-safe-entities::messages.replacements_title') }}</h2>
+        <p>{{ __('statamic-safe-entities::messages.replacements_intro') }}</p>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>{{ __('statamic-safe-entities::messages.column_search') }}</th>
+                    <th>{{ __('statamic-safe-entities::messages.column_replace') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($replacements as $search => $replacement)
+                    <tr>
+                        <td><code>{{ $search }}</code></td>
+                        <td><code>{{ $replacement }}</code></td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @endif
 </div>

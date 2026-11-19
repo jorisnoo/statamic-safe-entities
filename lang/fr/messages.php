@@ -3,6 +3,7 @@
 return [
 
     'utility_title' => 'Caractères spéciaux',
+    'toggle_visibility' => 'Afficher ou masquer les caractères spéciaux',
     'utility_description' => 'Une référence des caractères spéciaux utilisables dans vos contenus.',
     'utility_intro' => 'Utilisez ces codes spéciaux dans votre texte pour contrôler la césure et le flux des mots. Saisissez-les directement dans un champ texte ou utilisez le bouton <strong>&amp;</strong> dans la barre d\'outils du texte riche.',
     'column_code' => 'Ce qu\'il faut saisir',
@@ -41,12 +42,12 @@ return [
         '&raquo;' => 'Guillemet double fermant : »',
         '&lsaquo;' => 'Guillemet simple ouvrant : ‹',
         '&rsaquo;' => 'Guillemet simple fermant : ›',
-        '&ldquo;' => 'Guillemet anglais double ouvrant : \u{201C}',
-        '&rdquo;' => 'Guillemet anglais double fermant : \u{201D}',
-        '&lsquo;' => 'Guillemet anglais simple ouvrant : \u{2018}',
-        '&rsquo;' => 'Guillemet anglais simple fermant : \u{2019}',
-        '&sbquo;' => 'Guillemet-virgule inférieur simple : \u{201A}',
-        '&bdquo;' => 'Guillemet-virgule inférieur double : \u{201E}',
+        '&ldquo;' => 'Guillemet anglais double ouvrant : “',
+        '&rdquo;' => 'Guillemet anglais double fermant : ”',
+        '&lsquo;' => 'Guillemet anglais simple ouvrant : ‘',
+        '&rsquo;' => 'Guillemet anglais simple fermant : ’',
+        '&sbquo;' => 'Guillemet-virgule inférieur simple : ‚',
+        '&bdquo;' => 'Guillemet-virgule inférieur double : „',
 
         // Mathématiques & symboles
         '&times;' => 'Signe de multiplication, pas la lettre x',

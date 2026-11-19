@@ -3,6 +3,7 @@
 return [
 
     'utility_title' => 'Special Characters',
+    'toggle_visibility' => 'Toggle special character visibility',
     'utility_description' => 'A reference of special characters you can use in your content.',
     'utility_intro' => 'You can use these special codes in your text to control how words break and flow. Type them directly into any text field, or use the <strong>&amp;</strong> button in the rich text toolbar.',
     'column_code' => 'What to type',
@@ -41,12 +42,12 @@ return [
         '&raquo;' => 'Right double angle quote: »',
         '&lsaquo;' => 'Left single angle quote: ‹',
         '&rsaquo;' => 'Right single angle quote: ›',
-        '&ldquo;' => 'Left double quotation mark: \u{201C}',
-        '&rdquo;' => 'Right double quotation mark: \u{201D}',
-        '&lsquo;' => 'Left single quotation mark: \u{2018}',
-        '&rsquo;' => 'Right single quotation mark: \u{2019}',
-        '&sbquo;' => 'Single low quotation mark: \u{201A}',
-        '&bdquo;' => 'Double low quotation mark: \u{201E}',
+        '&ldquo;' => 'Left double quotation mark: “',
+        '&rdquo;' => 'Right double quotation mark: ”',
+        '&lsquo;' => 'Left single quotation mark: ‘',
+        '&rsquo;' => 'Right single quotation mark: ’',
+        '&sbquo;' => 'Single low quotation mark: ‚',
+        '&bdquo;' => 'Double low quotation mark: „',
 
         // Math & Symbols
         '&times;' => 'Multiplication sign, not the letter x',

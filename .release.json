@@ -3,8 +3,10 @@
   "sign_tag": true,
   "version_files": [],
   "checks": [
-    [
-      "vendor/bin/phpunit"
-    ]
+    ["vendor/bin/phpunit"],
+    ["npm", "ci"],
+    ["npm", "run", "build"],
+    ["git", "diff", "--exit-code", "HEAD", "--", "resources/dist/build"],
+    ["npm", "test"]
   ]
 }

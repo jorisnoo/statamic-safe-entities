@@ -12,7 +12,7 @@
             </Button>
         </template>
         <DropdownItem
-            v-for="(label, code) in entities"
+            v-for="({ label }, code) in entities"
             :key="code"
             @click="insert(code)"
         >

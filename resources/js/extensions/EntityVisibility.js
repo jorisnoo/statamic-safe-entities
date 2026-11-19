@@ -68,7 +68,7 @@ export function createEntityVisibilityExtension(tiptap) {
         },
 
         addProseMirrorPlugins() {
-            const entities = Object.keys(Statamic.$config.get('safeEntities') || {});
+            const entities = Object.entries(Statamic.$config.get('safeEntities') || {});
             const storage = this.storage;
 
             function renderEntity(entity) {
@@ -89,7 +89,7 @@ export function createEntityVisibilityExtension(tiptap) {
 
                     const text = node.text;
 
-                    for (const entity of entities) {
+                    for (const [entity, { output }] of entities) {
                         let index = 0;
                         while ((index = text.indexOf(entity, index)) !== -1) {
                             const from = pos + index;
@@ -104,7 +104,7 @@ export function createEntityVisibilityExtension(tiptap) {
 
                             // In rendered mode the code is hidden, so show the decoded character in its place.
                             if (!visible) {
-                                decorations.push(Decoration.widget(from, renderEntity(entity), { key: entity }));
+                                decorations.push(Decoration.widget(from, renderEntity(output), { key: entity }));
                             }
 
                             index += entity.length;

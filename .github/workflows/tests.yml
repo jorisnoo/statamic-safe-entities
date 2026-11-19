@@ -1,13 +1,12 @@
 name: Tests
 
 on:
+  pull_request:
   push:
-    paths:
-      - '**.php'
-      - '.github/workflows/tests.yml'
-      - 'phpunit.xml.dist'
-      - 'composer.json'
-      - 'composer.lock'
+    branches: ['**']
+
+permissions:
+  contents: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -16,23 +15,30 @@ concurrency:
 jobs:
   test:
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 5
+    timeout-minutes: 10
     strategy:
       fail-fast: true
       matrix:
         os: [ubuntu-latest]
         php: [8.4, 8.3, 8.2]
-        laravel: [12.*]
+        laravel: [12.*, 13.*]
         stability: [prefer-lowest, prefer-stable]
         include:
           - laravel: 12.*
             testbench: 10.*
+          - laravel: 13.*
+            testbench: 11.*
+        exclude:
+          - php: 8.2
+            laravel: 13.*
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup PHP
         uses: shivammathur/setup-php@2.40.0
@@ -56,3 +62,25 @@ jobs:
 
       - name: Execute tests
         run: vendor/bin/phpunit
+
+      - name: Set up Node for the editor suite
+        if: matrix.php == 8.4 && matrix.laravel == '13.*' && matrix.stability == 'prefer-stable'
+        uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+          package-manager-cache: false
+
+      - name: Exercise shipped Bard controls and rebuild assets
+        if: matrix.php == 8.4 && matrix.laravel == '13.*' && matrix.stability == 'prefer-stable'
+        run: |
+          npm ci
+          npm test
+          npm run build
+
+  checks:
+    name: Package checks
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - run: test "${{ needs.test.result }}" = success

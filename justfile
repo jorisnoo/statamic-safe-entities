@@ -5,7 +5,7 @@ default:
 # Install dependencies
 install:
     composer install
-    npm install
+    npm ci
 
 # Update dependencies
 update:
@@ -23,6 +23,7 @@ build:
 # Run tests
 test:
     vendor/bin/phpunit
+    npm test
 
 # Run all checks
 check: test

@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2026-11-19
+
+### Breaking
+
+- Requires Statamic 6. The Bard buttons and utility use its control panel; Statamic 5 sites should upgrade the CMS before upgrading the addon.
+
+### Fixed
+
+- The toolbar and utility now use the editor's control-panel language. Configured labels override translations, and the visibility toggle previews aliases using their configured output.
+- The Special Characters utility lists custom replacements as text and shows quotation marks correctly in English, French and German.
+- Publishing an updated control-panel bundle removes obsolete chunks once the current manifest is in place.
+
 ## [0.2.2](https://github.com/jorisnoo/statamic-safe-entities/releases/tag/0.2.2) (2026-09-14)
 
 ### ⚠ BREAKING CHANGES
@@ -53,7 +65,6 @@ All notable changes to this project will be documented in this file.
 
 ### Features
 
-- add cache header replacer for static caching ([b5bc7a6](https://github.com/jorisnoo/statamic-safe-entities/commit/b5bc7a689f376412e0f39ee6560e56e905559ec4))
 - add entity translations and replacement middleware ([0d7584d](https://github.com/jorisnoo/statamic-safe-entities/commit/0d7584d1d52934ce7f9b06c47c674f89d2a0c65b))
 - add entity aliasing and custom replacements with utility page ([ea56016](https://github.com/jorisnoo/statamic-safe-entities/commit/ea56016ac9ff515c1f756b2cdadf9b0400a9d0a5))
 

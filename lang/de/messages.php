@@ -3,6 +3,7 @@
 return [
 
     'utility_title' => 'Sonderzeichen',
+    'toggle_visibility' => 'Sichtbarkeit der Sonderzeichen umschalten',
     'utility_description' => 'Eine Übersicht der Sonderzeichen, die du in deinen Inhalten verwenden kannst.',
     'utility_intro' => 'Mit diesen Sonderzeichen kannst du steuern, wie Wörter umbrechen und fließen. Gib sie direkt in ein beliebiges Textfeld ein oder verwende die <strong>&amp;</strong>-Schaltfläche in der Rich-Text-Toolbar.',
     'column_code' => 'Was du eingibst',
@@ -41,12 +42,12 @@ return [
         '&raquo;' => 'Doppelte spitze Anführungszeichen rechts: »',
         '&lsaquo;' => 'Einfaches spitzes Anführungszeichen links: ‹',
         '&rsaquo;' => 'Einfaches spitzes Anführungszeichen rechts: ›',
-        '&ldquo;' => 'Öffnendes doppeltes Anführungszeichen: \u{201C}',
-        '&rdquo;' => 'Schliessendes doppeltes Anführungszeichen: \u{201D}',
-        '&lsquo;' => 'Öffnendes einfaches Anführungszeichen: \u{2018}',
-        '&rsquo;' => 'Schliessendes einfaches Anführungszeichen: \u{2019}',
-        '&sbquo;' => 'Einfaches Anführungszeichen unten: \u{201A}',
-        '&bdquo;' => 'Doppeltes Anführungszeichen unten: \u{201E}',
+        '&ldquo;' => 'Öffnendes doppeltes Anführungszeichen: “',
+        '&rdquo;' => 'Schliessendes doppeltes Anführungszeichen: ”',
+        '&lsquo;' => 'Öffnendes einfaches Anführungszeichen: ‘',
+        '&rsquo;' => 'Schliessendes einfaches Anführungszeichen: ’',
+        '&sbquo;' => 'Einfaches Anführungszeichen unten: ‚',
+        '&bdquo;' => 'Doppeltes Anführungszeichen unten: „',
 
         // Mathematik & Symbole
         '&times;' => 'Malzeichen, nicht der Buchstabe x',

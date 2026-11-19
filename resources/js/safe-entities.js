@@ -7,16 +7,17 @@ Statamic.booting(() => {
     Statamic.$components.register('entity-visibility-button', EntityVisibilityButton);
 
     Statamic.$bard.buttons((allButtons, button) => {
+        const labels = Statamic.$config.get('safeEntityButtons');
         return [
             button({
                 name: 'safeentities',
-                text: 'Special Characters',
+                text: labels.insert,
                 component: 'safe-entities-button',
                 html: '<span class="text-2xs font-mono leading-none">&amp;</span>',
             }),
             button({
                 name: 'entityvisibility',
-                text: 'Toggle special characters visibility',
+                text: labels.toggle,
                 component: 'entity-visibility-button',
                 html: '',
             }),
