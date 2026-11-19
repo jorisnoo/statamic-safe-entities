@@ -8,7 +8,7 @@ A Statamic addon for safe HTML entity insertion in Bard, text, and textarea fiel
 
 ## Installation
 
-Requires Statamic 6 and PHP 8.2 or later.
+Requires Statamic 6 and PHP 8.4 or later.
 
 ```bash
 composer require jorisnoo/statamic-safe-entities
